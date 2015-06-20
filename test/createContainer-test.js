@@ -12,7 +12,7 @@ describe('createContainer', () => {
     c.set('a', 'b')
 
     return c.get('a').then((value) => {
-      assert(value, 'b')
+      assert.equal(value, 'b')
     })
   })
 
@@ -21,7 +21,7 @@ describe('createContainer', () => {
     c.set('a', () => 'b')
 
     return c.get('a').then((value) => {
-      assert(value, 'b')
+      assert.equal(value, 'b')
     })
   })
 
@@ -31,7 +31,7 @@ describe('createContainer', () => {
     c.set('b', ['a'], (a) => a + 2)
 
     return c.get('b').then((value) => {
-      assert(value, 3)
+      assert.equal(value, 3)
     })
   })
 
@@ -41,7 +41,7 @@ describe('createContainer', () => {
     c.set('c', [], ['y'], () => 3)
 
     return c.search('x').then((services) => {
-      assert(services, [1, 2])
+      assert.deepEqual(services, [1, 2])
     })
   })
 
@@ -50,7 +50,7 @@ describe('createContainer', () => {
     var plugin = sinon.spy();
 
     c.plugin(plugin)
-    assert(plugin.called, true)
+    assert.isTrue(plugin.called)
   })
 
   it('should compile', () => {
@@ -85,7 +85,7 @@ describe('createContainer', () => {
     })
 
     return c.build().then(() => {
-      assert(list, [1, 2])
+      assert.deepEqual(list, [1, 2])
     })
   })
 
