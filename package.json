@@ -12,7 +12,7 @@
     "url": "https://github.com/vslinko-vstack/vstack-ioc.git"
   },
   "scripts": {
-    "test": "jest -i"
+    "test": "rm -rf coverage && karma start"
   },
   "dependencies": {
     "bluebird": "~2.3",
@@ -20,12 +20,22 @@
     "dep-graph": "~1.1"
   },
   "devDependencies": {
-    "jest-cli": "~0.1"
-  },
-  "jest": {
-    "rootDir": "lib",
-    "testPathIgnorePatterns": [
-      "/__tests__/[^/]*/.+"
-    ]
+    "babel": "5.5.8",
+    "babel-core": "5.5.8",
+    "babel-eslint": "3.1.17",
+    "babel-loader": "5.1.4",
+    "babel-runtime": "5.5.8",
+    "chai": "3.0.0",
+    "chai.assert": "1.0.0",
+    "codecov.io": "0.1.2",
+    "isparta-loader": "0.2.0",
+    "karma": "0.12.36",
+    "karma-chrome-launcher": "0.1.12",
+    "karma-coverage": "0.4.2",
+    "karma-mocha": "0.1.10",
+    "karma-webpack": "1.5.1",
+    "mocha": "2.2.5",
+    "node-libs-browser": "0.5.2",
+    "webpack": "1.9.11"
   }
 }
