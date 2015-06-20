@@ -1,17 +1,18 @@
 /* eslint-disable no-var */
 
 var webpack = require('webpack')
+var path = require('path')
 
 module.exports = function(config) {
   config.set({
     frameworks: ['mocha'],
 
     files: [
-      'test/**/*-test.js'
+      'test/**/*test.js'
     ],
 
     preprocessors: {
-      'test/**/*Test.js': ['webpack']
+      'test/**/*test.js': ['webpack']
     },
 
     reporters: ['progress', 'coverage'],
@@ -28,8 +29,8 @@ module.exports = function(config) {
     webpack: {
       module: {
         loaders: [
-          {test: /\.js$/, exclude: /\/node_modules\//, loaders: ['babel']},
-          {test: /\.js$/, exclude: [/\/node_modules\//, /\/test\//], loaders: ['isparta']}
+          {test: /\.js$/, include: [path.join(__dirname, 'test')], loaders: ['babel']},
+          {test: /\.js$/, include: [path.join(__dirname, 'lib')], loaders: ['isparta']}
         ]
       },
 

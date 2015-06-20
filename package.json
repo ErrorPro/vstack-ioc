@@ -2,7 +2,13 @@
   "name": "vstack-ioc",
   "version": "0.1.0",
   "description": "Inversion of Control container with promises support",
-  "keywords": ["container", "ioc", "di", "dependency", "vstack"],
+  "keywords": [
+    "container",
+    "ioc",
+    "di",
+    "dependency",
+    "vstack"
+  ],
   "bugs": "https://github.com/vslinko-vstack/vstack-ioc/issues",
   "license": "MIT",
   "author": "Vyacheslav Slinko <vslinko@yahoo.com>",
@@ -16,8 +22,8 @@
   },
   "dependencies": {
     "bluebird": "~2.3",
-    "invariant": "~1.0",
-    "dep-graph": "~1.1"
+    "dep-graph": "~1.1",
+    "invariant": "~1.0"
   },
   "devDependencies": {
     "babel": "5.5.8",
@@ -36,6 +42,7 @@
     "karma-webpack": "1.5.1",
     "mocha": "2.2.5",
     "node-libs-browser": "0.5.2",
-    "webpack": "1.9.11"
+    "webpack": "1.9.11",
+    "sinon": "git://github.com/cjohansen/Sinon.JS#sinon-2.0"
   }
 }
