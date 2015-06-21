@@ -18,6 +18,8 @@
     "url": "https://github.com/vslinko-vstack/vstack-ioc.git"
   },
   "scripts": {
+    "build": "babel lib -d build-lib",
+    "prepublish": "npm run build",
     "test": "rm -rf coverage && karma start"
   },
   "dependencies": {
