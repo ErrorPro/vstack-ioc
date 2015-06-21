@@ -1,4 +1,4 @@
-const createContainer = require('../build-lib/createContainer')
+const createContainer = require('../lib/createContainer')
 const sinon = require('sinon')
 
 describe('createContainer', () => {
