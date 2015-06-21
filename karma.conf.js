@@ -29,7 +29,7 @@ module.exports = function(config) {
     webpack: {
       module: {
         loaders: [
-          {test: /\.js$/, include: [path.join(__dirname, 'test')], loaders: ['babel']},
+          {test: /\.js$/, include: [path.join(__dirname, 'test'), path.join(__dirname, 'build-lib')], loaders: ['babel']},
           {test: /\.js$/, include: [path.join(__dirname, 'lib')], loaders: ['isparta']}
         ]
       },
