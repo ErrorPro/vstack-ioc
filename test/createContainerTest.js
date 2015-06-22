@@ -1,5 +1,5 @@
-const createContainer = require('../lib/createContainer')
-const sinon = require('sinon')
+import createContainer from '../lib/createContainer'
+import sinon from 'sinon'
 
 describe('createContainer', () => {
   let c
@@ -8,41 +8,33 @@ describe('createContainer', () => {
     c = createContainer()
   })
 
-  it('should store and resolve values',() => {
+  it('should store and resolve values', async () => {
     c.set('a', 'b')
 
-    return c.get('a').then((value) => {
-      assert.equal(value, 'b')
-    })
+    assert.equal(await c.get('a'), 'b')
   })
 
 
-  it('should store and resolve services', () => {
+  it('should store and resolve services', async () => {
     c.set('a', () => 'b')
 
-    return c.get('a').then((value) => {
-      assert.equal(value, 'b')
-    })
+    assert.equal(await c.get('a'), 'b')
   })
 
 
-  it('should resolve dependencies', () => {
+  it('should resolve dependencies',  async() => {
     c.set('a', () => 1)
     c.set('b', ['a'], (a) => a + 2)
 
-    return c.get('b').then((value) => {
-      assert.equal(value, 3)
-    })
+    assert.equal(await c.get('b'), 3)
   })
 
-  it('should search services', () => {
+  it('should search services', async () => {
     c.set('a', [], ['x'], () => 1)
     c.set('b', [], ['x'], () => 2)
     c.set('c', [], ['y'], () => 3)
 
-    return c.search('x').then((services) => {
-      assert.deepEqual(services, [1, 2])
-    })
+    assert.deepEqual(await c.search('x'), [1, 2])
   })
 
 
@@ -53,7 +45,7 @@ describe('createContainer', () => {
     assert.isTrue(plugin.called)
   })
 
-  it('should compile', () => {
+  it('should compile', async () => {
     var list = []
 
     c.plugin((c) => {
@@ -65,16 +57,14 @@ describe('createContainer', () => {
         }
       })
 
-      c.compile(() => {
-        return Promise.all([c.get('lister'), c.search('listable')])
-          .then((values) => {
-            var lister = values[0]
-            var listable = values[1]
+      c.compile(async () => {
+        let values = await* [c.get('lister'), c.search('listable')]
+        let lister = values[0]
+        let listable = values[1]
 
-            listable.forEach((item) => {
-              lister.add(item)
-            })
-          })
+        listable.forEach((item) => {
+          lister.add(item)
+        })
       })
     })
 
@@ -84,9 +74,8 @@ describe('createContainer', () => {
       c.set('c', [], ['not-listable'], 3)
     })
 
-    return c.build().then(() => {
-      assert.deepEqual(list, [1, 2])
-    })
+    await c.build()
+    assert.deepEqual(list, [1, 2])
   })
 
 

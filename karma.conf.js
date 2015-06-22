@@ -8,11 +8,11 @@ module.exports = function(config) {
     frameworks: ['mocha'],
 
     files: [
-      'test/**/*test.js'
+      'test/**/*Test.js'
     ],
 
     preprocessors: {
-      'test/**/*test.js': ['webpack']
+      'test/**/*Test.js': ['webpack']
     },
 
     reporters: ['progress', 'coverage'],
